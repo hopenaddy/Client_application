@@ -3,6 +3,7 @@ import requests
 import pycurl
  
 parser = argparse.ArgumentParser()
+# додаєм агумент, за яким будем виводити в консолі
 parser.add_argument("-f", "--foreground",  action="store_true")
 args = parser.parse_args()
 
