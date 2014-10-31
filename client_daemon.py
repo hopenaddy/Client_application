@@ -8,7 +8,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-f", "--foreground",  action="store_true")
 args = parser.parse_args()
 
-def getstatus(status):
+def getstatus():
     return status
 def getUserData():
 	c = pycurl.Curl()
