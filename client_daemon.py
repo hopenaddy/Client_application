@@ -21,9 +21,9 @@ if __name__ == "__main__":
 	if args.foreground:
     		print "Foreground option"
     		while 1:
-    		getstatus()
-    		getUserData()
-    		sleep(5)
+    			getstatus()
+    			getUserData()
+    			sleep(5)
 	else:
     	print "Foreground option was not passed, going to be a daemon"
     	getstatus()
