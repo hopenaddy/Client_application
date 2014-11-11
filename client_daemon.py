@@ -1,6 +1,7 @@
 import argparse
 import requests
 import pycurl
+from daemonize import Daemonize
 from time import sleep
 
 status = requests.get('http://ukr.net/') 
@@ -11,21 +12,17 @@ args = parser.parse_args()
 def getstatus():
     return status
 def getUserData():
-	c = pycurl.Curl()
-	c.setopt(pycurl.URL, 'https://ukr.net')
-	c.setopt(pycurl.HTTPHEADER, ['Accept: application/json'])
-	c.setopt(pycurl.USERPWD, 'username:userpass')
-	c.perform()
-	    
+    c = pycurl.Curl()
+    c.setopt(pycurl.URL, 'https://ukr.net')
+    c.setopt(pycurl.HTTPHEADER, ['Accept: application/json'])
+    c.setopt(pycurl.USERPWD, 'username:userpass')
+    c.perform()
+        
 if __name__ == "__main__":
-	if args.foreground:
-    		print "Foreground option"
-    		while 1:
-    			getstatus()
-    			getUserData()
-    			sleep(5)
-	else:
-    	print "Foreground option was not passed, going to be a daemon"
-    	getstatus()
-
-	
+    if args.foreground:
+        pid = "/tmp/test.pid"
+        daemon = Daemonize(app="client_Daemon", pid=pid, action=getUserData)
+        daemon.start();
+            
+    else:
+        getUserData()
