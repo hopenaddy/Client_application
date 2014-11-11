@@ -17,11 +17,15 @@ def getUserData():
     c.setopt(pycurl.HTTPHEADER, ['Accept: application/json'])
     c.setopt(pycurl.USERPWD, 'username:userpass')
     c.perform()
-        
+def test():
+    while 1:
+        getUserData()
+        sleep(5)
+
 if __name__ == "__main__":
     if args.foreground:
         pid = "/tmp/test.pid"
-        daemon = Daemonize(app="client_Daemon", pid=pid, action=getUserData)
+        daemon = Daemonize(app="test_app", pid=pid, action=test)
         daemon.start();
             
     else:
