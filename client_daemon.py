@@ -1,39 +1,37 @@
 import argparse
+import os
 import requests
 import pycurl
 from daemonize import Daemonize
 from time import sleep
 
-URL_ADDRESS = 'http://ukr.net/'
+URL_ADDRESS = "http://ukr.net"
+PID_FILE = "/tmp/test.pid"
 
-status = requests.get(URL_ADDRESS) 
+new_status = requests.get(URL_ADDRESS) 
 parser = argparse.ArgumentParser()
 parser.add_argument("-f", "--foreground",  action="store_true")
 args = parser.parse_args()
 
-def getstatus():
-    return status
-
+def getStatus():
+    return new_status.status_code
+    
 def getUserData():
-    c = pycurl.Curl()
-    c.setopt(pycurl.URL, URL_ADDRESS)
-    c.setopt(pycurl.HTTPHEADER, ['Accept: application/json'])
-    c.setopt(pycurl.USERPWD, 'username:userpass')
-    c.perform()
-
-def test():
+    r = requests.get(URL_ADDRESS)
+    head = r.headers
+    for key, value in head.iteritems() :
+        print key, value
+    
+def mytest():
     while 1:
-        print getstatus()
+        print getStatus()
         getUserData()
         sleep(5)
 
 if __name__ == "__main__":
-    
     if args.foreground:
-        pid = "/tmp/test.pid"
-        daemon = Daemonize(app="test_app", pid=pid, action=test)
+        daemon = Daemonize(app="test_app", pid=PID_FILE, action=mytest)
         daemon.start()
-            
     else:
-        print getstatus()
+        print getStatus()
         getUserData()
