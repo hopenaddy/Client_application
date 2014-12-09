@@ -5,7 +5,7 @@ import pycurl
 from daemonize import Daemonize
 from time import sleep
 
-URL_ADDRESS = "http://ukr.net"
+URL_ADDRESS = "http://lv128.tk:15672"
 PID_FILE = "/tmp/test.pid"
 
 new_status = requests.get(URL_ADDRESS) 
