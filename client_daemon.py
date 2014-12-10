@@ -7,10 +7,7 @@ import getpass
 import pycurl
 
 URL_ADDRESS = "http://client.lv128.tk/login"
-<<<<<<< HEAD
 URL_Listener = 'http://hl.lv128.tk/'
-=======
->>>>>>> 850ff3e1d826f73e7dd37a5495ed0a474efd62b0
 PID_FILE = "/tmp/test.pid"
 sender = pycurl.Curl()
 
