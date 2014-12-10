@@ -5,7 +5,11 @@ import json
 from time import sleep
 import getpass
 
+<<<<<<< HEAD
 URL_ADDRESS = "http://client.lv128.tk/login"
+=======
+URL_ADDRESS = "http://lv128.tk:15672"
+>>>>>>> 28bbb17fda438113983dd5f1aada10e0ac71d136
 PID_FILE = "/tmp/test.pid"
 
 new_status = requests.get(URL_ADDRESS) 
