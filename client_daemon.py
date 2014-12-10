@@ -4,13 +4,12 @@ from daemonize import Daemonize
 import json
 from time import sleep
 import getpass
+import pycurl
 
-<<<<<<< HEAD
 URL_ADDRESS = "http://client.lv128.tk/login"
-=======
-URL_ADDRESS = "http://lv128.tk:15672"
->>>>>>> 28bbb17fda438113983dd5f1aada10e0ac71d136
+URL_Listener = 'http://hl.lv128.tk/'
 PID_FILE = "/tmp/test.pid"
+sender = pycurl.Curl()
 
 new_status = requests.get(URL_ADDRESS) 
 parser = argparse.ArgumentParser()
@@ -27,6 +26,15 @@ def auth():
     headers = {'content-type': 'application/json'}
     r = requests.post(URL_ADDRESS, data=json.dumps(payload), headers=headers)
     print r.content
+
+def send_message():
+    msg = raw_input('Input your message:')
+    token = 'some_token'
+    url = 'http://hl.lv128.tk/'
+    sender.setopt(sender.URL, str(url))
+    sender.setopt(sender.POSTFIELDS, 'msg=' + msg + '&token=' + token)
+    #sender.perform()
+    print "OK! You sended your message"
     
 def mytest():
     while 1:
@@ -41,3 +49,4 @@ if __name__ == "__main__":
     else:
         print getStatus()
         auth()
+        send_message()
