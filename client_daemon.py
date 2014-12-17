@@ -22,7 +22,7 @@ def getStatus():
 def auth():
     login = raw_input('Login:')
     password = getpass.getpass()
-    payload = {'Username': login,'data':password}
+    payload = {'Username:': login,'Password:':password}
     headers = {'content-type': 'application/json'}
     r = requests.post(URL_ADDRESS, data=json.dumps(payload), headers=headers)
     print r.content
@@ -30,8 +30,7 @@ def auth():
 def send_message():
     msg = raw_input('Input your message:')
     token = 'some_token'
-    url = 'http://hl.lv128.tk/'
-    sender.setopt(sender.URL, str(url))
+    sender.setopt(sender.URL, str(URL_Listener))
     sender.setopt(sender.POSTFIELDS, 'msg=' + msg + '&token=' + token)
     #sender.perform()
     print "OK! You sended your message"
