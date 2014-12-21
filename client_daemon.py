@@ -10,7 +10,6 @@ URL_ADDRESS = 'http://lv128.tk:8813/'
 URL_Listener = 'http://lv128.tk:8813/'
 URL_ADDRESS = "http://client.lv128.tk/login"
 URL_Listener = 'http://hl.lv128.tk/'
->>>>>>> 0626a3696b56e6549524bb77e16538e2bf0aad0d
 PID_FILE = "/tmp/test.pid"
 sender = pycurl.Curl()
 
