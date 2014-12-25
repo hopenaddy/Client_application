@@ -33,7 +33,6 @@ def get_user_msgs():
     c.setopt(pycurl.URL, URL_ND)
     c.setopt(pycurl.HTTPHEADER, ['Accept: application/json'])
     c.setopt(pycurl.POSTFIELDS, para)
-    c.setopt(pycurl.POST, 1)
     c.perform()
 def auth():
     login = raw_input('Login:')
@@ -45,7 +44,9 @@ def auth():
 
 def send_message():
     msg = raw_input('Input your message:')
-    token = 'a08418f1-0baa-4d2b-a77a-f5d2bd12e015'
+    token = raw_input('Input your token:')
+    if (token == ''):
+        token = 'DevToken'
     sender.setopt(sender.URL, str(URL_LiSTENER))
     sender.setopt(sender.POSTFIELDS, 'msg=' + msg + '&token=' + token)
     sender.perform()
@@ -61,6 +62,7 @@ if __name__ == "__main__":
          daemon = Daemonize(app="test_app", pid=PID_FILE, action=mytest)
          daemon.start()
     else:
-        getStatus()
+        print getStatus()
         get_user_msgs()
+        print '\n'
         send_message()
