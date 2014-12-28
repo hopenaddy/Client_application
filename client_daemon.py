@@ -56,6 +56,6 @@ if __name__ == "__main__":
          daemon = Daemonize(app="test_app", pid=PID_FILE, action=func_for_daemon())
          daemon.start()
     if args.send_msg:
-        send_message(token)
+        while 1:send_message(token)
     else:
         get_user_msgs(login, password, token)        
